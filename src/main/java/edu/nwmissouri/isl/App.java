@@ -19,10 +19,10 @@ public final class App {
   private App() {
   }
 
-  private static void process(String fileName) {
+  private static <SparkSession, SparkSession> void process(String fileName) {
 
     // define a spark configuration
-    SparkConf sparkConf = new SparkConf().setMaster("local").setAppName("Challenge");
+    SparkConf sparkConf = new SparkConf().setAppName("Challenge").setMaster("local");
 
     // define a spark context
     JavaSparkContext sparkContext = new JavaSparkContext(sparkConf);

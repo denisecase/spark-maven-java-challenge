@@ -4,11 +4,11 @@
 
 - [Repo](https://github.com/denisecase/spark-challenge)
 
-## Prerequisites
+## Recommended IDE
 
 - VS Code
 - VS Code Extension: Maven for Java
-- VS Code Extension: Java Extension Pack
+- VS Code Extension: Extension Pack for Java
 
 ## Instructions 1 - Start New Maven Project
 
