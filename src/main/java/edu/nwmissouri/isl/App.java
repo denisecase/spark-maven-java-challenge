@@ -13,7 +13,7 @@ import org.apache.commons.io.FileUtils;
 import java.util.Comparator;
 
 /**
- * Hello world!
+ * App class
  */
 public final class App {
   private App() {
@@ -38,13 +38,11 @@ public final class App {
     JavaPairRDD<String, Integer> countData = wordsFromFile.mapToPair(t -> new Tuple2(t, 1))
         .reduceByKey((x, y) -> (int) x + (int) y);
 
-    // countData has records in the form (word, 5)
-
+    // countData has records in the form (word, 5) - reverse the tuple to (5, word)
     JavaPairRDD<Integer, String> output = countData.mapToPair(p -> new Tuple2(p._2, p._1))
         .sortByKey(Comparator.reverseOrder());
 
     // save results to a folder (RDDs are complex)
-
     String outputFolder = "results";
     Path path = FileSystems.getDefault().getPath(outputFolder);
     FileUtils.deleteQuietly(path.toFile());
@@ -55,19 +53,16 @@ public final class App {
   }
 
   /**
-   * Says hello to the world.
+   * Execution begins here.
    * 
-   * @param args The arguments of the program.
+   * @param args The arguments provided to the program.
    */
   public static void main(String[] args) {
-    // System.out.println("Hello World!");
-
     if (args.length != 1) {
       System.out.println("Please provide a single argument (text file name).");
       System.exit(0);
     }
-    // call wordCount with the first argument
+    // call method with argument provided
     process(args[0]);
-
   }
 }
