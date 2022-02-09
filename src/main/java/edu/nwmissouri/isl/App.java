@@ -1,10 +1,10 @@
 package edu.nwmissouri.isl;
 
 // imports
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 import scala.Tuple2;
 import java.util.Arrays;
 import java.nio.file.FileSystems;
@@ -21,11 +21,12 @@ public final class App {
 
   private static void process(String fileName) {
 
-    // define a spark configuration
-    SparkConf sparkConf = new SparkConf().setMaster("local").setAppName("Challenge");
+    SparkSession spark = SparkSession
+        .builder()
+        .appName("App")
+        .getOrCreate();
 
-    // define a spark context
-    JavaSparkContext sparkContext = new JavaSparkContext(sparkConf);
+    JavaSparkContext sparkContext = new JavaSparkContext(spark.sparkContext());
 
     // use textFile() to read data into RDD
     JavaRDD<String> inputFile = sparkContext.textFile(fileName);
