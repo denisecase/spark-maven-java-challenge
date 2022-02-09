@@ -24,6 +24,7 @@ public final class App {
     SparkSession spark = SparkSession
         .builder()
         .appName("App")
+        .config("spark.master", "local")
         .getOrCreate();
 
     JavaSparkContext sparkContext = new JavaSparkContext(spark.sparkContext());
