@@ -33,8 +33,7 @@ Copy the POM.xml from this repo to yours. Change your groupId.
 ```PowerShell
 mvn clean
 mvn compile
-mvn assembly:single
-```
+mvn exec:java "-Dexec.mainClass=com.journaldev.sparkdemo.WordCounter" "-Dexec.args=input.txt"
 
 ## Execute
 
